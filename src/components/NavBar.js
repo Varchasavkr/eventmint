@@ -1,45 +1,82 @@
-import React from 'react';
-import '../assets/styles/NavBar.css'; // Import a CSS file for styling
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import '../assets/styles/NavBar.css';
 
-function NavBar() {
+const Navbar = () => {
+  const [activeLink, setActiveLink] = useState('Movies');
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
   return (
     <nav className="navbar">
-      {/* Entertainment Dropdown */}
-      <div className="dropdown">
-        <button className="dropbtn">Entertainment</button>
-        <div className="dropdown-content">
-          <a href="#">Movies</a>
-          <a href="#">Stream</a>
-          <a href="#">Plays</a>
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="flex space-x-8">
+          <Link
+            to="/movies"
+            className={`nav-link ${activeLink === 'Movies' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Movies')}
+          >
+            Movies
+          </Link>
+          <Link
+            to="/stream-events"
+            className={`nav-link ${activeLink === 'Stream Events' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Stream Events')}
+          >
+            Stream Events
+          </Link>
+          <Link
+            to="/plays"
+            className={`nav-link ${activeLink === 'Plays' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Plays')}
+          >
+            Plays
+          </Link>
+          <Link
+            to="/sports-activities"
+            className={`nav-link ${activeLink === 'Sports Activities' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Sports Activities')}
+          >
+            Sports Activities
+          </Link>
         </div>
-      </div>
 
-      {/* Events & Activities Dropdown */}
-      <div className="dropdown">
-        <button className="dropbtn">Events & Activities</button>
-        <div className="dropdown-content">
-          <a href="#">Events</a>
-          <a href="#">Sports</a>
-          <a href="#">Activities</a>
+        {/* Right Section */}
+        <div className="flex space-x-8">
+          <Link
+            to="/list-your-show"
+            className={`nav-link ${activeLink === 'List Your Show' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('List Your Show')}
+          >
+            List Your Show
+          </Link>
+          <Link
+            to="/corporates"
+            className={`nav-link ${activeLink === 'Corporates' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Corporates')}
+          >
+            Corporates
+          </Link>
+          <Link
+            to="/offers"
+            className={`nav-link ${activeLink === 'Offers' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Offers')}
+          >
+            Offers
+          </Link>
+          <Link
+            to="/gift-cards"
+            className={`nav-link ${activeLink === 'Gift Cards' ? 'active' : ''}`}
+            onClick={() => handleLinkClick('Gift Cards')}
+          >
+            Gift Cards
+          </Link>
         </div>
-      </div>
-
-      {/* Corporate & Offers Dropdown */}
-      <div className="dropdown">
-        <button className="dropbtn">Corporate & Offers</button>
-        <div className="dropdown-content">
-          <a href="#">Corporates</a>
-          <a href="#">Offers</a>
-          <a href="#">Gift Cards</a>
-        </div>
-      </div>
-
-      {/* Single link */}
-      <div className="single-link">
-        <a href="#">List Your Show</a>
       </div>
     </nav>
   );
-}
+};
 
-export default NavBar;
+export default Navbar;
